@@ -1,0 +1,27 @@
+
+@mixin marginIcon {
+    margin: 5px;
+
+}
+$colors : (
+    "orange-color" : orange,
+    "purple-color" : rebeccapurple,
+    "red-color" : red,
+);
+
+.editIcon {
+    color: map-get($colors, orange-color);
+    @include marginIcon;
+
+}
+
+.saveIcon {
+    color: map-get($colors, purple-color );
+    @include marginIcon;
+}
+
+.deleteIcon {
+    color: map-get($colors, red-color);
+    @include marginIcon;
+
+}

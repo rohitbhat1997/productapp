@@ -1,0 +1,15 @@
+.limitTextHeight {
+    height: 3px;
+    overflow: hidden;
+}
+
+
+@mixin flexProp {
+    display:flex ; 
+    flex-wrap: wrap;
+}
+
+.flexProperties {
+    @include flexProp ; 
+    justify-content: space-evenly;
+}

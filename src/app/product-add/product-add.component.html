@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <form [formGroup]="addProductForm" autocomplete="off">
+        <div class="form-group ">
+            <label for="productID">Product ID</label>
+            <input type="text" class="form-control" formControlName="productID" id="productID"
+                aria-describedby="productID" placeholder="Enter Product ID" appNumbersOnly required>
+        </div>
+
+        <div class="form-group ">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" formControlName="productName" id="productName"
+                aria-describedby="productName" placeholder="Enter Product Name" appAlphabetOnly required>
+        </div>
+        <div class="form-group ">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" formControlName="price" id="price" aria-describedby="price"
+                placeholder="Enter Price" appNumbersOnly required>
+        </div>
+
+        <div class="form-group ">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" formControlName="description" id="description"
+                aria-describedby="description" placeholder="Enter Description" required>
+        </div>
+        <button mat-raised-button type="submit" color="primary" (click)="submitProduct()"><i class="material-icons "
+                aria-hidden="true">
+                done
+            </i> Add Product</button>
+    </form>
+
+</div>

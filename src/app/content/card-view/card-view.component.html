@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div class="flexProperties">
+        <div *ngFor="let item of storedData">
+            <mat-card class="example-card mt-5">
+                <mat-card-header>
+
+                    <mat-card-title>{{item.productName}}</mat-card-title>
+                    <mat-card-subtitle>Amount: {{item.amount}} Rs.</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p [ngClass]="{'limitTextHeight': item.readmore}">
+                        {{item.description}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button type="button" class="btn btn-info" (click)="showText(item)">
+                        {{ item.readmore ? 'Read More...': 'Read Less' }}
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+
+
+        </div>
+    </div>
+
+</div>
