@@ -13,6 +13,8 @@ describe('TableViewComponent', () => {
   let PRODUCTS: any[];
   let mockProductService: any;
   let mockToastr: ToastrService;
+  let mockResponse = [];
+  let mockResponse1 = [];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -69,21 +71,30 @@ Once done , check the new length of storedData , it should be 2
     expect(component.storedData).toEqual(true);
   });
 
-
   /**
-* @description This unit test case will return the value which 
-we are passing in updateProduct() of a particular component. We will check whether the return value 
-is same as passed value from UI. If that matches then test case is success.
-*/
+ * @description In this Unit test case , we are going to pass mockResponse to storeddata , then call the update
+ function and pass mockResponse1 , once update function is called , the value of storeddata is updated.
+ Once the value is updated we are checking it with contains
+ */
   it('should get update from product list', () => {
 
-    let mockResponse = [
-      { id: 1, productName: 'Product 1', amount: 1000, description: 'Product with great specifications.' },
+    mockResponse = [
+      { id: 1, productName: 'TV', amount: 1000, description: 'Product with great specifications.' },
     ];
 
-    mockProductService.updateProductApi.and.returnValue(of(mockResponse[0]));
-    component.updateProduct(mockResponse[0]);
-    expect(component.dataFromRes).toEqual(mockResponse[0]);
+    mockResponse1 = [
+      { id: 1, productName: 'Refrigerator', amount: 2000, description: 'Product 2 ' },
+    ];
+
+    mockProductService.updateProductApi.and.returnValue(of(true));
+    component.storedData = mockResponse;
+    component.updateProduct(mockResponse1[0]);
+    expect(component.storedData[0].productName).toContain('Refrigerator');
+    expect(component.storedData[0].productName).not.toContain('TV');
 
   });
+
+
 });
+
+

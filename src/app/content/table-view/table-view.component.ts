@@ -13,7 +13,6 @@ import { Product } from 'src/app/interface/product';
 export class TableViewComponent implements OnInit {
   // Variable Declaration
   storedData: any = [];
-  dataFromRes: any;
 
   displayedColumns: string[] = ['id', 'productName', 'amount', 'description', 'action'];
   dataSource = new MatTableDataSource<Product>([]);
@@ -69,12 +68,11 @@ export class TableViewComponent implements OnInit {
     element.toggle = !element.toggle;
     this.productService.updateProductApi(element).subscribe(
       resp => {
-        this.dataFromRes = resp;
-        this.storedData.forEach((ele: Product) => {
-          if (ele.id === element.id) {
-            ele = element;
+        for (let i = 0; i < this.storedData.length; i++) {
+          if (this.storedData[i].id === element.id) {
+            this.storedData[i] = element;
           }
-        });
+        }
       },
       err => {
         this.toastr.error(err);
