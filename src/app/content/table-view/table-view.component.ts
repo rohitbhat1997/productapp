@@ -48,7 +48,7 @@ export class TableViewComponent implements OnInit {
 * @param element particular table row
 */
   deleteProduct(element: Product): void {
-    this.productService.deleteProductApi(element.id).subscribe(
+    this.productService.deleteProductApi(Number(element.id)).subscribe(
       resp => {
         this.storedData = this.storedData.filter((p: any) => p !== element);
         this.dataSource = new MatTableDataSource<Product>(this.storedData);
@@ -65,6 +65,7 @@ export class TableViewComponent implements OnInit {
 * @param element particular table row
 */
   updateProduct(element: any): void {
+    element.id = Number(element.id);
     element.toggle = !element.toggle;
     this.productService.updateProductApi(element).subscribe(
       resp => {

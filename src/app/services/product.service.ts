@@ -13,7 +13,7 @@ export class ProductService {
     return this.httpClient.get(this.SERVER_URL + 'product');
   }
 
-  public deleteProductApi(productId: any) {
+  public deleteProductApi(productId: number) {
     return this.httpClient.delete(`${this.SERVER_URL + 'product'}/${productId}`)
   }
 
