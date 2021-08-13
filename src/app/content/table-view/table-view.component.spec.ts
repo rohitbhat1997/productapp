@@ -1,5 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { Product } from 'src/app/interface/product';
@@ -13,13 +15,16 @@ describe('TableViewComponent', () => {
   let PRODUCTS: any[];
   let mockProductService: any;
   let mockToastr: ToastrService;
+  let mockRouter: Router;
   let mockResponse = [];
   let mockResponse1 = [];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TableViewComponent],
-      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+      imports: [HttpClientTestingModule,
+        ToastrModule.forRoot(),
+        RouterTestingModule],
       providers: [ProductService]
     })
       .compileComponents();
@@ -39,7 +44,7 @@ describe('TableViewComponent', () => {
     ];
 
     mockProductService = jasmine.createSpyObj(['deleteProductApi', 'getProductListApi', 'updateProductApi']);
-    component = new TableViewComponent(mockProductService, mockToastr);
+    component = new TableViewComponent(mockProductService, mockToastr, mockRouter);
   });
 
   it('should create', () => {

@@ -8,6 +8,11 @@ const routes: Routes = [
     path: 'content',
     component: ContentComponent
   },
+
+  {
+    path: 'content/:value',
+    component: ContentComponent
+  },
   {
     path: 'productadd',
     component: ProductAddComponent

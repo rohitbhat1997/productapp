@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interface/product';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class TableViewComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'productName', 'amount', 'description', 'action'];
   dataSource = new MatTableDataSource<Product>([]);
+  @Output() tabIndexChange = new EventEmitter<number>();
 
   constructor(private productService: ProductService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router: Router) { }
 
 
   ngOnInit(): void {
@@ -96,4 +99,19 @@ export class TableViewComponent implements OnInit {
     });
   }
 
+  /**
+* @method funcForChangingMatTable
+* @description Function is called to check whether last element delete reached or not, 
+   if reached then switch tab to card view
+* @param element particular table row
+*/
+  funcForChangingMatTable(element: Product) {
+    if (element.id === this.storedData[this.storedData.length - 1].id) {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/content', true], { skipLocationChange: true });
+      });
+
+    }
+
+  }
 }

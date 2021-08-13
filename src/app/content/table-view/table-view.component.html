@@ -45,24 +45,25 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element" class="action-btn-i centerAlign">
-                <a *ngIf="!element.toggle ">
-                    <i class="material-icons plus edit-icon editIcon" aria-hidden="true" title="Edit"
-                        (click)="toggleIcon(element)">
+                <button *ngIf="!element.toggle " aria-label="Edit" class="editIcon btnStyling"
+                    (click)="toggleIcon(element)">
+                    <i class="material-icons plus edit-icon " aria-hidden="true" title="Edit">
                         edit</i>
-                </a>
+                </button>
 
-                <a *ngIf="element.toggle ">
-                    <i class="material-icons plus view-icon saveIcon" aria-hidden="true" title="Save"
-                        (click)="updateProduct(element)">
+                <button *ngIf="element.toggle " aria-label="Save" class="saveIcon btnStyling"
+                    (click)="updateProduct(element)">
+                    <i class="material-icons plus view-icon " aria-hidden="true" title="Save">
                         save
                     </i>
-                </a>
+                </button>
 
-                <a>
-                    <i class=" material-icons plus delete deleteIcon" (click)="deleteProduct(element)">
+                <button aria-label="Delete" (click)="deleteProduct(element)"
+                    (keydown.Tab)="funcForChangingMatTable(element)" class="deleteIcon btnStyling">
+                    <i class=" material-icons plus delete ">
                         delete
                     </i>
-                </a>
+                </button>
 
             </td>
         </ng-container>
